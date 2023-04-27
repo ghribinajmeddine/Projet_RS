@@ -1,0 +1,51 @@
+* g.edge_betweenness() :La centralité de betweenness mesure le nombre de fois où chaque arête est incluse dans le plus court chemin entre toutes les paires de sommets dans le graphe.
+
+*print(max(g.edge_betweenness())) :pour trouver la valeur maximale de la centralité de betweenness des arêtes dans le graphe g
+
+*g.vs['name']=3
+print("le nom est ",g.vs[155]["name"]): définit l'attribut "name" de tous les sommets dans le graphe g à la valeur 3.
+
+*D=g.vs.degree()
+for i in D:
+    if i==max(D):
+        print("le noeud central est ", g.vs[D.index(i)]["name"]) : le code affiche le nom du sommet avec le plus grand degré dans le graphe g, ce qui peut être interprété comme le noeud central du graphe en termes de
+ connectivité et d'importance. Cependant, il est important de noter que la centralité d'un sommet ne doit pas être
+ évaluée uniquement sur la base de son degré
+
+*# Récupérer les voisins du sommet 2
+voisins = g.neighbors(2)
+
+*print(voisins) : Les voisins d'un sommet sont tous les sommets qui sont reliés à ce sommet par une arête.
+
+*g.vs.select(_degree=g.maxdegree())["name"] : si le graphe g contient trois sommets avec des degrés respectifs de 4, 6 et 6, 
+
+renverra une liste contenant les noms des sommets avec les indices 1 et 2, qui ont tous deux un degré de 6
+
+*# Voisinage du graphe
+g.neighborhood() : 
+
+La méthode renvoie alors une liste d'indices de sommets, qui représentent tous les sommets connectés au sommet de départ par une arête dans le graphe.
+
+*# Construction de communautés avec edge betweenness
+RSS = g.community_edge_betweenness(directed=False)
+
+igraph.plot(RSS) : Cet algorithme est utilisé pour trouver des communautés dans le graphe en détectant les arêtes qui ont le plus grand "edge betweenness",
+ c'est-à-dire le nombre de plus courts chemins entre des paires de sommets qui passent par cette arête. 
+L'algorithme élimine progressivement les arêtes avec le plus grand "edge betweenness" jusqu'à ce que toutes les communautés aient été identifiées.
+
+*# Construction de communautés avec walktrap
+RRS = g.community_walktrap()
+igraph.plot(RRS) :  
+ Cet algorithme est utilisé pour trouver des communautés en simulant des marches aléatoires sur le graphe et en mesurant la similarité entre les sommets visités.
+
+
+ comparer les deux RT:
+
+ l'algorithme "Edge Betweenness" est plus lent que l'algorithme "Walktrap", car il nécessite le calcul de toutes les paires
+ de plus courts chemins pour identifier les arêtes les plus centrales. 
+ l'algorithme "Edge Betweenness" peut avoir des difficultés à identifier les communautés dans les graphes avec des communautés de taille similaire et
+ des connexions équilibrées.
+ l'algorithme "Walktrap" est plus rapide et mieux adapté aux graphes de grande taille. Il est également plus efficace pour identifier des communautés 
+qui ont une structure interne bien définie et des connexions faibles entre les communautés.
+
+
